@@ -31,46 +31,58 @@ export class chartComponent {
 
   createDataArray() {
     let date = ['x'];
-    let price = ['price'];
+    let price = ['y'];
+    let title = ['title'];
     
     for(let i in this.data) {
       date.push(this.data[i].date);
       price.push(this.data[i].price);
+      title.push(this.data[i].title);
     }
     
     return {
       date: date,
-      price: price
+      price: price,
+      title: title
     };
   }
 
   drawChart() {
-    console.log(this.data);
-    console.log(this.createDataArray().date);
-    console.log(this.createDataArray().price);
+    if(this.createDataArray().price.length < 2) {
+      console.warn('There is any data what we can demostreate with chart :)');
+      return;
+    }
     this.chart = c3.generate({
-        data: {
-            x: 'x',
-            columns: [
-                this.createDataArray().price,
-                this.createDataArray().date
-            ],
-            type: 'bar',
-            types: {
-              temperature: 'line'
-            },
+      data: {
+        x: 'x',
+        y: 'y',
+        columns: [
+          this.createDataArray().price,
+          this.createDataArray().date
+        ],
+        type: 'bar'
+      },
+      zoom: {
+        enabled: true
+      },
+      axis: {
+        x: {
+          label: {
+            text: 'date',
+            position: 'outer-middle'
+          },
+          type: 'timeseries',
+          tick: {
+            format: '%Y-%m-%d'
+          }
         },
-        zoom: {
-          enabled: true
-        },
-        axis: {
-            x: {
-                type: 'timeseries',
-                tick: {
-                    format: '%Y-%m-%d'
-                }
-            }
+        y: {
+          label: {
+            text: 'price',
+            position: 'outer-middle'
+          }        
         }
+      }
     });
   }
 }
