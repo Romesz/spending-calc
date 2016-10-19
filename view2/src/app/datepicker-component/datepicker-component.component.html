@@ -1,0 +1,7 @@
+<div>
+  <form #searchForm = "ngForm" (ngSubmit) = "searchSpending()">
+    <label for="date">date</label>
+    <input type="month" id="date" required [(ngModel)] = model.date  name="date" />
+    <button type="submit">Search</button>
+  </form>
+</div>

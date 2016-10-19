@@ -1,0 +1,13 @@
+<div>
+  <form (ngSubmit) = "AddOutcome()" #addForm = "ngForm">
+    <label for="item">Item</label>
+    <input type="text" id="item" required [(ngModel)] = model.item name="item" />
+
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" required [(ngModel)] = model.amount name="amount" />
+    <button type="submit">Add</button>
+  </form>
+  <p *ngIf = "added">
+    {{model.item}}, {{model.amount}} added
+  </p>
+</div>

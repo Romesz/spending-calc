@@ -1,7 +1,5 @@
 /* jshint esnext: true */
-/*globals require, module*/
-
-"use strict";
+/* globals require, module, process */
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;

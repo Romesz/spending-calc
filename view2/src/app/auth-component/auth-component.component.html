@@ -1,0 +1,6 @@
+<nav>
+  <ul>
+    <li *ngIf = "isLoggedIn === false"><a href="/auth">Log in</a></li>
+    <li *ngIf = "isLoggedIn === true"><a href="/logout">Log out</a></li>
+  </ul>
+</nav>

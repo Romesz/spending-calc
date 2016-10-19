@@ -1,7 +1,5 @@
 /* jshint esnext: true */
-/*globals require, module, console*/
-
-"use strict";
+/* globals require, module, console */
 
 const routesDBhelper = require('./routesDBhelper.js');
 
@@ -13,19 +11,29 @@ module.exports = {
     if(req.isAuthenticated()) {
       return next();
     }
-    res.render('noauth');
+    res.json({auth: false});
+  },
+  isAuth: (req, res) => {
+    res.json({auth: req.isAuthenticated()});
   },
   add: (req, res) => {
     let c = function(res) {
-      res.redirect('/');
+      //res.redirect('/');
+      res.send({sucess:true})
     };
     routesDBhelper.add(req.user.id, req.body, c, res);
+  },
+  retriveByDate: (req, res) => {
+    let c = function(res, data) {
+      res.json(data);
+    };
+    routesDBhelper.retriveByDate(req.user.id, req.body.date, c, res);
   },
   getData: (req, res) => {
     let c = function(data, res) {
       res.json(data);
-    }
-    routesDBhelper.getData(req.user.id, c, res);
+    };
+    routesDBhelper.data(req.user.id, c, res);
   },
   fb: (req, res) => {
     res.redirect('/');
