@@ -1,24 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { AppmodelProvider } from '../appmodel-provider';
 
 @Component({
   selector: 'app-auth-component',
   templateUrl: './auth-component.component.html',
-  styleUrls: ['./auth-component.component.css'],
-  providers: [ AppmodelProvider ]
+  styleUrls: ['./auth-component.component.css']
 })
 export class AuthComponentComponent {
 
   isLoggedIn: boolean = false;
-  appProvider;
-  //@Input() parentTitle: string = '';
+  @Output() isLogged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private http: Http, appProvider: AppmodelProvider) {
+  constructor(private http: Http) {
     this.checkAuth();
-    this.appProvider = appProvider;
-    appProvider.auth = true;
   }
 
   checkAuth () {
@@ -35,7 +30,6 @@ export class AuthComponentComponent {
     } else {
       this.isLoggedIn = true;
     }
-    //this.appProvider.auth(this.isLoggedIn);
-    this.appProvider.auth = this.isLoggedIn;
+    this.isLogged.next(this.isLoggedIn);
   }
 }

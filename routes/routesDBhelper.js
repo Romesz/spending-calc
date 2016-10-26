@@ -1,6 +1,8 @@
 /* jshint esnext: true */
 /*globals require, module, console*/
 
+const moment = require('moment');
+
 const models = require('../models/outcome');
 
 module.exports = {
@@ -41,19 +43,21 @@ module.exports = {
      if(userID === null || userID === undefined) {
       callback(res, null);
     } else {
-      let dateSplited = date.split('-');
-      let year = parseInt(dateSplited[0]);
-      let month = parseInt(dateSplited[1]);
-      console.log(month);
-      // http://stackoverflow.com/questions/13571700/get-first-and-last-date-of-current-month-with-javascript-or-jquery
-      // http://momentjs.com/timezone/docs/
-      console.log(new Date(2016, 9, 1).toUTCString());
-      console.log(new Date(2016, 10 + 1, 0).toUTCString());
+      function getDate(startVend, dateHelper) {
+        let date;
+        if (startVend === 'startOf') {
+          date = moment(dateHelper).startOf('month').format('YYYY-MM-DD');
+        } else {
+          date = moment(dateHelper).endOf('month').format('YYYY-MM-DD');
+        }
+        return date;
+      } 
+
       models.find({
         userID: userID,
         date: {
-          $gte: new Date(year, month, 1).toUTCString(),
-          $lt: new Date(year, month + 1, 0).toUTCString()
+          $gte: getDate('startOf', date),
+          $lt: getDate('endOf', date)
         }
       }, (err, data) => {
         if (err) {

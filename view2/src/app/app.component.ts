@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
-import { AppmodelProvider } from './appmodel-provider';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [ AppmodelProvider ]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'Spending Calc';
-  //parentTitle: string = 'works';
-  constructor(public appProvider:AppmodelProvider) {
-    setTimeout(()=> {
-      console.log(appProvider.auth);
-    }, 2000);
+  showDashbord: boolean = false;
+
+  constructor() {}
+
+  setLogged(value:boolean) {
+    console.log(value);
+    this.showDashbord = value;
   }
 }
