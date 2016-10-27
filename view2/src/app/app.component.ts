@@ -12,7 +12,6 @@ export class AppComponent {
   constructor() {}
 
   setLogged(value:boolean) {
-    console.log(value);
     this.showDashbord = value;
   }
 }

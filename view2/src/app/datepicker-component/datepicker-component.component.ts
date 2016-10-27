@@ -12,23 +12,29 @@ import { Date } from '../date';
 export class DatepickerComponentComponent {
 
   model:Date;
+  items:Array<Object>;
+  showTable:any = null;
 
-  constructor(private http:Http) { 
+  constructor(private http:Http) {
     this.model= {
       date: ''
     };
   }
 
   searchSpending() {
-    console.log(this.model.date);
     let body = `date=${this.model.date}`;
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let options = new RequestOptions({ headers: headers });
     this.http.post('/retriveByDate', body, options)
     .map(response => response.json())
     .subscribe(
-      response => console.log(response),
+      response => this.fetchResponse(response),
       err => console.log(err)
     );
+  }
+
+  fetchResponse(resp) {
+    this.items = resp;
+    this.showTable = (this.items !== undefined && this.items.length > 0);
   }
 }

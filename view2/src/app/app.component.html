@@ -1,7 +1,7 @@
 <app-auth-component (isLogged) = "setLogged($event)"></app-auth-component>
-<h1>
-  {{title}}
-</h1>
+<div>
+  <h1>{{title}}</h1>
+</div>
 <section *ngIf = "showDashbord === true">
   <app-add-componenet></app-add-componenet>
   <app-datepicker-component></app-datepicker-component>

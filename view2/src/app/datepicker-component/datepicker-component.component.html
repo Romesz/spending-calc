@@ -4,4 +4,17 @@
     <input type="month" id="date" required [(ngModel)] = model.date  name="date" />
     <button type="submit">Search</button>
   </form>
+  <section>
+    <table *ngIf = "showTable === true">
+      <tr>
+        <th>title</th>
+        <th>price</th>
+      </tr>
+      <tr *ngFor="let i of items">
+        <td>{{ i.title }}</td>
+        <td>{{ i.price }}</td>
+      </tr>
+    </table>
+    <p *ngIf = "showTable === false">Nothing in this month.</p>
+  </section>
 </div>
