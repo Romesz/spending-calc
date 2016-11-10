@@ -2,7 +2,7 @@
   "name": "spending-calc",
   "version": "0.0.1",
   "description": "Calculate your income",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
