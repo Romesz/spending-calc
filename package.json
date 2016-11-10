@@ -4,7 +4,9 @@
   "description": "Calculate your income",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "build": "cd view2 && ng build",
+    "serve": "node app.js",
+    "start": "npm run build && npm run serve"
   },
   "author": "Romano Firtermaiszter",
   "license": "ISC",
