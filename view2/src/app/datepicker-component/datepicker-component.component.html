@@ -7,8 +7,8 @@
   <section>
     <table *ngIf = "showTable === true">
       <tr>
-        <th>title</th>
-        <th>price</th>
+        <th (click) = "searchSpendingSort(title)">title</th>
+        <th (click) = "searchSpendingSort(price)">price</th>
       </tr>
       <tr *ngFor="let i of items">
         <td>{{ i.title }}</td>

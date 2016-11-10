@@ -1,0 +1,12 @@
+form {
+    padding-top: 10px;
+}
+label, input {
+    display: block;
+}
+input, button {
+    border-radius: 3px;
+}
+td:nth-child(even) {
+    text-align: right;
+}

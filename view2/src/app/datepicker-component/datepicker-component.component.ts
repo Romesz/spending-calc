@@ -22,7 +22,19 @@ export class DatepickerComponentComponent {
   }
 
   searchSpending() {
-    let body = `date=${this.model.date}`;
+    this.callForSpendings(this.model.date);
+  }
+
+  searchSpendingSort(sort) {
+    // TODO: finish it on the server side
+    //this.callForSpendings(this.model.date, sort);
+  }
+
+  callForSpendings(date, sort = undefined) {
+    let body = `date=${date}`;
+    if (sort !== undefined) {
+      body += `&sort=${sort}`;
+    }
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let options = new RequestOptions({ headers: headers });
     this.http.post('/retriveByDate', body, options)

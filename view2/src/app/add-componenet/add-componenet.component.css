@@ -1,0 +1,6 @@
+label, input {
+    display: block;
+}
+input, button {
+    border-radius: 3px;
+}

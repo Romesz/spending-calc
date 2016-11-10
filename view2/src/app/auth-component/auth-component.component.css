@@ -1,0 +1,19 @@
+nav {
+  margin-top: 100px;
+}
+ul {
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  padding: 10px;
+  background: grey;
+  border-radius: 5px;
+  color: white;
+}
+a:hover {
+  border-radius: 10px;
+}
