@@ -7,7 +7,7 @@ with:
 * Express and Mongodb
 
 run:
-* npm run build
-* npm run serve
+* npm i -g angular-cli
+* npm run start
 
 .env file is required with the db and fb app credentials
